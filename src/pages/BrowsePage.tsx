@@ -1,22 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUniqueModList } from '../data/wikiRegistry';
-import { ArrowRight, Search } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export const BrowsePage: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const mods = getUniqueModList();
-
-  const filteredMods = mods.filter((mod) => {
-    const q = searchTerm.toLowerCase().trim();
-    if (!q) return true;
-    return (
-      mod.title.toLowerCase().includes(q) ||
-      mod.slug.toLowerCase().includes(q) ||
-      mod.tagline?.toLowerCase().includes(q)
-    );
-  });
 
   return (
     <div className="relative min-h-screen bg-neutral-950 text-white flex flex-col selection:bg-pink-500 selection:text-white overflow-hidden">
@@ -41,33 +30,17 @@ export const BrowsePage: React.FC = () => {
         />
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-24 w-full flex-1">
+      <div className="relative z-10 max-w-xl mx-auto px-4 sm:px-6 py-16 sm:py-24 w-full flex-1">
         {/* Header */}
-        <div className="text-center max-w-xl mx-auto mb-10">
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-3">
-            All Wikis
+        <div className="text-center mb-8">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+            Wikis
           </h1>
-
-          <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
-            Browse all client mods, plugins, and software creations by Promotezz.
-          </p>
-
-          {/* Quick Search */}
-          <div className="relative max-w-md mx-auto mt-6">
-            <Search className="absolute left-3.5 top-3 w-4 h-4 text-neutral-500" />
-            <input
-              type="text"
-              placeholder="Search wikis..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 text-sm bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-neutral-500 focus:outline-none focus:ring-1 focus:ring-pink-500/60 focus:border-pink-500/40 backdrop-blur-md transition-all"
-            />
-          </div>
         </div>
 
-        {/* Wikis List Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {filteredMods.map((mod) => (
+        {/* Wikis List */}
+        <div className="space-y-4">
+          {mods.map((mod) => (
             <div
               key={mod.slug}
               onClick={() => navigate(`/${mod.slug}`)}
@@ -93,12 +66,6 @@ export const BrowsePage: React.FC = () => {
             </div>
           ))}
         </div>
-
-        {filteredMods.length === 0 && (
-          <div className="text-center py-12 text-neutral-500 text-sm">
-            No wikis match "{searchTerm}".
-          </div>
-        )}
       </div>
     </div>
   );
