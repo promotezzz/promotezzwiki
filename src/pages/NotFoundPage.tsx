@@ -1,11 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 
 interface NotFoundPageProps {
   isRoot?: boolean;
   slug?: string;
 }
 
-export const NotFoundPage: React.FC<NotFoundPageProps> = ({ isRoot = false, slug }) => {
+export const NotFoundPage: React.FC<NotFoundPageProps> = () => {
   return (
     <div className="relative min-h-screen bg-neutral-950 text-white flex flex-col items-center justify-center px-4 overflow-hidden selection:bg-pink-500 selection:text-white">
       {/* Colorful Animated Background Mesh Gradients */}
@@ -30,7 +32,6 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ isRoot = false, slug
       </div>
 
       <div className="relative z-10 max-w-xl mx-auto text-center flex flex-col items-center">
-
         {/* Massive Colorful 404 Header */}
         <div className="relative mb-2">
           <h1 className="text-8xl sm:text-9xl font-black tracking-tighter leading-none select-none bg-gradient-to-r from-pink-500 via-purple-500 via-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent drop-shadow-[0_10px_35px_rgba(236,72,153,0.3)]">
@@ -40,21 +41,18 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ isRoot = false, slug
         </div>
 
         {/* Expressive Subheading */}
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-3">
-          {isRoot ? 'There is no home page here' : 'Lost in the void'}
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-6">
+          Lost in the void
         </h2>
 
-        <p className="text-neutral-300 text-sm sm:text-base leading-relaxed max-w-md">
-          {isRoot ? (
-            <>
-              This website operates strictly via <span className="text-pink-400 font-medium">direct sublinks</span>. You need a specific link given by Promotezz to view a mod wiki.
-            </>
-          ) : (
-            <>
-              The sublink <code className="font-mono text-cyan-300 bg-white/10 px-1.5 py-0.5 rounded">/{slug}</code> does not exist on this wiki network.
-            </>
-          )}
-        </p>
+        {/* Back to Home Button */}
+        <Link
+          to="/browse"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-white bg-white/10 hover:bg-white/15 border border-white/15 hover:border-pink-500/40 backdrop-blur-xl transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-black/20 group"
+        >
+          <ArrowLeft className="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-0.5 text-pink-400" />
+          <span>Back to home</span>
+        </Link>
       </div>
     </div>
   );
