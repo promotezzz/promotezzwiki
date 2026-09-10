@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowsePage } from './pages/BrowsePage';
 import { WikiPage } from './pages/WikiPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
@@ -7,13 +8,16 @@ export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* No home page: Root returns colorful 404 because no sublink was specified */}
-        <Route path="/" element={<NotFoundPage isRoot={true} />} />
+        {/* Root domain redirects to /browse where users can see all wiki things */}
+        <Route path="/" element={<Navigate to="/browse" replace />} />
         
-        {/* Mod wikis accessed strictly via direct sublink */}
+        {/* /browse directory view */}
+        <Route path="/browse" element={<BrowsePage />} />
+
+        {/* Mod wikis accessed via direct sublink */}
         <Route path="/:slug" element={<WikiPage />} />
         
-        {/* Any unknown fallback */}
+        {/* Any unknown fallback route shows the colorful 404 */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

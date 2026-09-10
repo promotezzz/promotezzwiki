@@ -725,3 +725,18 @@ export function getModBySlug(slug: string): ModWikiData | undefined {
 export function getAllModSlugs(): string[] {
   return Object.keys(WIKI_PAGES);
 }
+
+/**
+ * Returns distinct canonical mod wiki items (no aliases)
+ */
+export function getUniqueModList(): ModWikiData[] {
+  const seen = new Set<string>();
+  const list: ModWikiData[] = [];
+  for (const item of Object.values(WIKI_PAGES)) {
+    if (!seen.has(item.slug)) {
+      seen.add(item.slug);
+      list.push(item);
+    }
+  }
+  return list;
+}
