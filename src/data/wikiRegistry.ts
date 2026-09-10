@@ -4,20 +4,20 @@ const rightClickPotsData: ModWikiData = {
   slug: 'rightclickpots',
   title: 'RightClickPots',
   tagline: 'Client-side Fabric mod for instant potion usage, fast potting hotkeys, and automated weapon re-swap.',
-  badge: 'Client-Side Mod',
+  badge: 'Fabric Only',
   version: 'v1.0.0',
-  loader: 'Fabric 1.20.4+ / NeoForge',
+  loader: 'Fabric 1.21.1+',
   author: 'Promotezz',
   lastUpdated: 'September 2026',
-  requirements: ['Fabric Loader 0.15+', 'Fabric API 0.96.0+', 'Java 17+'],
+  requirements: ['Minecraft 1.21.1+', 'Fabric Loader 0.16+', 'Fabric API', 'Java 21+'],
   downloads: [
-    { label: 'Download RightClickPots.jar', url: '#', primary: true, type: 'direct' },
-    { label: 'GitHub Repository', url: 'https://github.com', type: 'github' }
+    { label: 'View on Modrinth', url: 'https://modrinth.com/mod/rightclickpots', primary: true, type: 'modrinth' },
+    { label: 'GitHub Repository', url: 'https://github.com/promotezzz/RightClickPots', type: 'github' }
   ],
   overview: [
-    'RightClickPots is an ultra-responsive client-side utility mod engineered for fast-paced combat and PvP. It eliminates cumbersome hotbar slot swapping by letting you instantly splash or drink potions with a single click or hotkey.',
+    'RightClickPots is an ultra-responsive client-side utility mod engineered for fast-paced combat and PvP on Minecraft 1.21.1 and higher. It eliminates cumbersome hotbar slot swapping by letting you instantly splash or drink potions with a single click or hotkey.',
     'After triggering, RightClickPots automatically returns your active hand to your primary weapon or previous slot in under 40 milliseconds, completely preventing attack delay resets.',
-    'Built with pure client-side packet timing—fully compatible with Lunar, Dawn, and standard Fabric modpacks.'
+    'Built with pure client-side packet timing—fully compatible with Lunar, Dawn, and standard Fabric modpacks on 1.21.1+.'
   ],
   features: [
     {
@@ -44,14 +44,14 @@ const rightClickPotsData: ModWikiData = {
   installation: [
     {
       step: 1,
-      title: 'Download Fabric Loader',
-      description: 'Ensure Fabric Loader (0.15.0 or higher) is installed for Minecraft 1.20.4.'
+      title: 'Install Fabric Loader',
+      description: 'Ensure Fabric Loader (0.16.0 or higher) is installed for Minecraft 1.21.1 or above.'
     },
     {
       step: 2,
-      title: 'Install Fabric API & Mod',
-      description: 'Place RightClickPots-v1.0.0.jar and Fabric API inside your .minecraft/mods folder.',
-      commandOrPath: '%appdata%/.minecraft/mods/RightClickPots-v1.0.0.jar'
+      title: 'Download from Modrinth & Install Fabric API',
+      description: 'Download RightClickPots from Modrinth and place RightClickPots.jar alongside Fabric API inside your .minecraft/mods folder.',
+      commandOrPath: '%appdata%/.minecraft/mods/RightClickPots.jar'
     },
     {
       step: 3,

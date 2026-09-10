@@ -10,7 +10,8 @@ import {
   Sliders,
   HelpCircle,
   AlertCircle,
-  BookOpen
+  BookOpen,
+  ExternalLink
 } from 'lucide-react';
 import { getModBySlug } from '../data/wikiRegistry';
 import { IssueReportBox } from '../components/IssueReportBox';
@@ -266,6 +267,46 @@ export const WikiPage: React.FC = () => {
               <div className="space-y-4 text-neutral-300 text-base sm:text-lg leading-relaxed">
                 {mod.overview.map((paragraph, idx) => (
                   <p key={idx}>{paragraph}</p>
+                ))}
+              </div>
+            )}
+
+            {/* Action buttons (Modrinth, GitHub) */}
+            {mod.downloads && mod.downloads.length > 0 && (
+              <div className="flex flex-wrap items-center gap-3 mt-8">
+                {mod.downloads.map((dl, idx) => (
+                  <a
+                    key={idx}
+                    href={dl.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`
+                      inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer
+                      ${
+                        dl.type === 'modrinth'
+                          ? 'bg-[#1bd96a]/15 text-[#1bd96a] border border-[#1bd96a]/30 hover:bg-[#1bd96a]/25 hover:border-[#1bd96a]/50 shadow-sm shadow-[#1bd96a]/10'
+                          : 'bg-white/5 text-neutral-300 border border-white/10 hover:bg-white/10 hover:text-white'
+                      }
+                    `}
+                  >
+                    <span>{dl.label}</span>
+                    <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+                  </a>
+                ))}
+              </div>
+            )}
+
+            {/* Platform & Requirements badges */}
+            {mod.requirements && mod.requirements.length > 0 && (
+              <div className="mt-8 pt-6 border-t border-white/[0.06] flex flex-wrap items-center gap-2">
+                <span className="text-xs text-neutral-500 font-medium mr-1">Compatibility:</span>
+                {mod.requirements.map((req, idx) => (
+                  <span
+                    key={idx}
+                    className="text-xs font-mono px-2.5 py-1 rounded-md bg-white/[0.04] text-neutral-300 border border-white/10"
+                  >
+                    {req}
+                  </span>
                 ))}
               </div>
             )}

@@ -142,7 +142,7 @@ export const IssueReportBox: React.FC<IssueReportBoxProps> = ({ modTitle, modSlu
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g. 1.20.4 Fabric"
+                  placeholder="e.g. 1.21.1 Fabric"
                   value={version}
                   onChange={(e) => setVersion(e.target.value)}
                   className="w-full px-3 py-2 text-xs sm:text-sm bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-neutral-500 focus:outline-none focus:ring-1 focus:ring-pink-500/60 focus:border-pink-500/40 transition-colors"
