@@ -46,13 +46,10 @@ export const BrowsePage: React.FC = () => {
               onClick={() => navigate(`/${mod.slug}`)}
               className="group relative rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-pink-500/40 p-5 sm:p-6 backdrop-blur-xl cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-purple-500/10"
             >
-              <div className="flex items-start justify-between gap-3 mb-2">
+              <div className="mb-2">
                 <h2 className="text-lg sm:text-xl font-semibold text-white group-hover:text-pink-300 transition-colors">
                   {mod.title}
                 </h2>
-                <span className="text-xs font-mono px-2 py-0.5 rounded-md bg-white/10 text-neutral-400 border border-white/10">
-                  /{mod.slug}
-                </span>
               </div>
 
               <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed line-clamp-2 mb-4">
