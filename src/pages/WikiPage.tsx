@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getModBySlug } from '../data/wikiRegistry';
-import { Header } from '../components/Header';
 import { IssueReportBox } from '../components/IssueReportBox';
 import { NotFoundPage } from './NotFoundPage';
 
@@ -40,9 +39,7 @@ export const WikiPage: React.FC = () => {
         />
       </div>
 
-      <Header currentModSlug={mod.slug} currentModTitle={mod.title} />
-
-      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16 w-full flex-1">
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 py-16 sm:py-24 w-full flex-1">
         {/* Title */}
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white drop-shadow-sm">
           {mod.title}
