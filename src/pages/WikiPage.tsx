@@ -247,13 +247,8 @@ export const WikiPage: React.FC = () => {
           {/* Section 1: Overview */}
           <section id="overview" className="scroll-mt-24 pb-12 border-b border-white/[0.08]">
             <div className="flex flex-wrap items-center gap-2 mb-4">
-              {mod.badge && (
-                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-pink-500/15 text-pink-400 border border-pink-500/30">
-                  {mod.badge}
-                </span>
-              )}
               {mod.loader && (
-                <span className="text-xs px-2.5 py-1 rounded-full bg-white/5 text-neutral-300 border border-white/10">
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-pink-500/15 text-pink-400 border border-pink-500/30">
                   {mod.loader}
                 </span>
               )}

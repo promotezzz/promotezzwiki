@@ -4,7 +4,6 @@ const rightClickPotsData: ModWikiData = {
   slug: 'rightclickpots',
   title: 'RightClickPots',
   tagline: 'Client-side Fabric mod for instant potion usage, fast potting hotkeys, and automated weapon re-swap.',
-  badge: 'Fabric Only',
   version: 'v1.0.0',
   loader: 'Fabric 1.21.1+',
   author: 'Promotezz',
