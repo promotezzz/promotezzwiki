@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUniqueModList } from '../data/wikiRegistry';
-import { ArrowRight, Search, Sparkles } from 'lucide-react';
+import { ArrowRight, Search } from 'lucide-react';
 
 export const BrowsePage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -44,11 +44,6 @@ export const BrowsePage: React.FC = () => {
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-24 w-full flex-1">
         {/* Header */}
         <div className="text-center max-w-xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-mono text-pink-300 mb-4 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-            <span>WIKI DIRECTORY</span>
-          </div>
-
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-3">
             All Wikis
           </h1>
