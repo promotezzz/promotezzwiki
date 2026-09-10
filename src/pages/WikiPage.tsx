@@ -7,7 +7,6 @@ import {
   Sparkles,
   Download,
   Sliders,
-  ToggleRight,
   HelpCircle,
   AlertCircle,
   BookOpen,
@@ -15,7 +14,6 @@ import {
 } from 'lucide-react';
 import { getModBySlug } from '../data/wikiRegistry';
 import { IssueReportBox } from '../components/IssueReportBox';
-import { CodeBlock } from '../components/CodeBlock';
 import { NotFoundPage } from './NotFoundPage';
 
 interface NavItem {
@@ -307,164 +305,111 @@ export const WikiPage: React.FC = () => {
           {/* Section 2: Features */}
           {mod.features && mod.features.length > 0 && (
             <section id="features" className="scroll-mt-24 py-12 border-b border-white/[0.08]">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-3">
                 What are the features?
               </h2>
-              <p className="text-sm text-neutral-400 mb-6">
+              <p className="text-base text-neutral-300 mb-6 leading-relaxed">
                 {mod.title} comes with engineered utilities optimized for PvP and rapid hotbar manipulation:
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <ul className="space-y-4 text-neutral-300 text-base leading-relaxed">
                 {mod.features.map((feature, idx) => (
-                  <div
-                    key={idx}
-                    className="p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-all backdrop-blur-xl"
-                  >
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <h3 className="text-base font-semibold text-white">
-                        {feature.title}
-                      </h3>
-                      {feature.badge && (
-                        <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-pink-500/10 text-pink-400 border border-pink-500/20">
-                          {feature.badge}
-                        </span>
-                      )}
+                  <li key={idx} className="flex items-start gap-3">
+                    <span className="text-pink-400 font-bold text-lg leading-none mt-1">•</span>
+                    <div>
+                      <strong className="text-white font-semibold">{feature.title}</strong>
+                      <span className="text-neutral-400"> — {feature.description}</span>
                     </div>
-                    <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </section>
           )}
 
           {/* Section 3: Installation */}
           {mod.installation && mod.installation.length > 0 && (
             <section id="installation" className="scroll-mt-24 py-12 border-b border-white/[0.08]">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-3">
                 Installation
               </h2>
-              <p className="text-sm text-neutral-400 mb-6">
+              <p className="text-base text-neutral-300 mb-6 leading-relaxed">
                 Follow these quick steps to get {mod.title} running in your client:
               </p>
 
-              <div className="space-y-4">
+              <ol className="space-y-5 text-neutral-300 text-base leading-relaxed">
                 {mod.installation.map((step) => (
-                  <div
-                    key={step.step}
-                    className="p-5 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="w-7 h-7 rounded-full bg-pink-500/20 border border-pink-500/30 flex items-center justify-center text-xs font-bold text-pink-400 shrink-0 mt-0.5">
-                        {step.step}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-base font-semibold text-white mb-1">
-                          {step.title}
-                        </h3>
-                        <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-                          {step.description}
-                        </p>
-                        {step.commandOrPath && (
-                          <div className="mt-3">
-                            <code className="text-xs font-mono text-cyan-300 bg-black/40 px-3 py-1.5 rounded-lg border border-white/10 block overflow-x-auto">
-                              {step.commandOrPath}
-                            </code>
-                          </div>
-                        )}
-                      </div>
+                  <li key={step.step} className="flex items-start gap-3.5">
+                    <span className="w-6 h-6 rounded-full bg-pink-500/10 text-pink-400 border border-pink-500/20 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                      {step.step}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <strong className="text-white font-semibold">{step.title}</strong>
+                      <p className="text-neutral-300 mt-1 leading-relaxed">{step.description}</p>
+                      {step.commandOrPath && (
+                        <code className="text-xs font-mono text-cyan-300 bg-white/5 border border-white/10 px-2.5 py-1 rounded inline-block mt-2">
+                          {step.commandOrPath}
+                        </code>
+                      )}
                     </div>
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ol>
             </section>
           )}
 
           {/* Section 4: Configuration & Controls */}
           {(mod.configGuide || mod.config) && (
             <section id="configuration" className="scroll-mt-24 py-12 border-b border-white/[0.08]">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-3">
                 Configuration & Controls
               </h2>
-              <p className="text-sm text-neutral-400 mb-6">
-                No file editing required. RightClickPots can be customized and toggled entirely in-game:
+              <p className="text-base text-neutral-300 mb-6 leading-relaxed">
+                No manual file editing required. RightClickPots can be customized and toggled entirely in-game:
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Mod Menu Card */}
-                <div className="p-5 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl">
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <div className="flex items-center gap-2">
-                      <Sliders className="w-4 h-4 text-pink-400" />
-                      <h3 className="text-base font-semibold text-white">
-                        In-Game Settings
-                      </h3>
+              <ul className="space-y-4 text-neutral-300 text-base leading-relaxed">
+                <li className="flex items-start gap-3">
+                  <span className="text-pink-400 font-bold text-lg leading-none mt-1">•</span>
+                  <div>
+                    <strong className="text-white font-semibold">In-Game Settings (Mod Menu)</strong>
+                    <span className="text-neutral-400"> — {mod.configGuide?.modMenuDescription || 'Access and configure all settings directly in-game through the Mod Menu graphical screen.'}</span>
+                    <div className="mt-1.5">
+                      <code className="text-xs font-mono text-cyan-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">
+                        Mod Menu &gt; RightClickPots
+                      </code>
                     </div>
-                    <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-pink-500/10 text-pink-400 border border-pink-500/20">
-                      Mod Menu
-                    </span>
                   </div>
-                  <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed mb-3">
-                    {mod.configGuide?.modMenuDescription || 'Access and configure all settings directly in-game through the Mod Menu graphical screen.'}
-                  </p>
-                  <code className="text-[11px] font-mono text-cyan-300 bg-black/40 px-2.5 py-1 rounded border border-white/10 inline-block">
-                    Mod Menu &gt; RightClickPots
-                  </code>
-                </div>
-
-                {/* Quick Toggle Keybind Card */}
-                <div className="p-5 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl">
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <div className="flex items-center gap-2">
-                      <ToggleRight className="w-4 h-4 text-pink-400" />
-                      <h3 className="text-base font-semibold text-white">
-                        Quick-Toggle Mod
-                      </h3>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-pink-400 font-bold text-lg leading-none mt-1">•</span>
+                  <div>
+                    <strong className="text-white font-semibold">Quick-Toggle Keybind</strong>
+                    <span className="text-neutral-400"> — {mod.configGuide?.quickToggleDescription || 'Quickly toggle RightClickPots on or off on the fly by configuring your toggle key.'}</span>
+                    <div className="mt-1.5">
+                      <code className="text-xs font-mono text-cyan-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">
+                        Options &gt; Controls &gt; Key Binds &gt; RightClickPots
+                      </code>
                     </div>
-                    <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                      Keybind
-                    </span>
                   </div>
-                  <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed mb-3">
-                    {mod.configGuide?.quickToggleDescription || 'Quickly toggle RightClickPots on or off on the fly by configuring your toggle key.'}
-                  </p>
-                  <code className="text-[11px] font-mono text-cyan-300 bg-black/40 px-2.5 py-1 rounded border border-white/10 inline-block">
-                    Options &gt; Controls &gt; Key Binds &gt; RightClickPots
-                  </code>
-                </div>
-              </div>
-
-              {mod.config && (
-                <div className="mt-6">
-                  <CodeBlock
-                    code={mod.config.code}
-                    language={mod.config.language}
-                    filename={mod.config.filename}
-                  />
-                </div>
-              )}
+                </li>
+              </ul>
             </section>
           )}
 
-          {/* Section 6: FAQ */}
+          {/* Section 5: FAQ */}
           {mod.faq && mod.faq.length > 0 && (
             <section id="faq" className="scroll-mt-24 py-12 border-b border-white/[0.08]">
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-6">
                 Frequently Asked Questions
               </h2>
 
-              <div className="space-y-4">
+              <div className="space-y-6 text-base leading-relaxed">
                 {mod.faq.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="p-5 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl"
-                  >
-                    <h3 className="text-base font-semibold text-white mb-2 flex items-center gap-2">
-                      <HelpCircle className="w-4 h-4 text-pink-400 shrink-0" />
-                      <span>{item.question}</span>
+                  <div key={idx}>
+                    <h3 className="text-lg font-semibold text-white mb-1.5">
+                      {item.question}
                     </h3>
-                    <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed pl-6">
+                    <p className="text-neutral-300">
                       {item.answer}
                     </p>
                   </div>
