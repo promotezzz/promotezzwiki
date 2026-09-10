@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 import { getModBySlug } from '../data/wikiRegistry';
 import { IssueReportBox } from '../components/IssueReportBox';
 import { NotFoundPage } from './NotFoundPage';
@@ -40,6 +41,17 @@ export const WikiPage: React.FC = () => {
       </div>
 
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 py-16 sm:py-24 w-full flex-1">
+        {/* Browse more button */}
+        <div className="mb-8">
+          <Link
+            to="/browse"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium text-neutral-400 hover:text-white bg-neutral-900/80 hover:bg-neutral-800/90 border border-neutral-800 hover:border-neutral-700 transition-all duration-200 backdrop-blur-md group shadow-sm hover:shadow-pink-500/5"
+          >
+            <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-0.5 text-neutral-400 group-hover:text-pink-400" />
+            <span>Browse more</span>
+          </Link>
+        </div>
+
         {/* Title */}
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white drop-shadow-sm">
           {mod.title}
