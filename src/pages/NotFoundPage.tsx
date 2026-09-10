@@ -1,5 +1,4 @@
 import React from 'react';
-import { Sparkles } from 'lucide-react';
 
 interface NotFoundPageProps {
   isRoot?: boolean;
@@ -31,14 +30,6 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ isRoot = false, slug
       </div>
 
       <div className="relative z-10 max-w-xl mx-auto text-center flex flex-col items-center">
-        {/* Colorful Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono mb-6 shadow-lg shadow-purple-500/10">
-          <span className="flex h-2 w-2 rounded-full bg-pink-500 animate-ping" />
-          <span className="bg-gradient-to-r from-pink-400 via-purple-300 to-cyan-300 bg-clip-text text-transparent font-semibold">
-            {isRoot ? 'NO SUBLINK PROVIDED' : `SUBLINK NOT FOUND: /${slug || ''}`}
-          </span>
-          <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-        </div>
 
         {/* Massive Colorful 404 Header */}
         <div className="relative mb-2">
