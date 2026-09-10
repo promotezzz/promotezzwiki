@@ -25,16 +25,6 @@ const rightClickPotsData: ModWikiData = {
       badge: 'Combat'
     },
     {
-      title: 'Smart Potion Priority System',
-      description: 'Automatically detects Splash Health II first, then Speed II, or falls back to any configured potion order.',
-      badge: 'Smart'
-    },
-    {
-      title: 'Inventory Quick-Scan',
-      description: 'Optionally pulls potions directly from top inventory rows when your hotbar runs out of pots.',
-      badge: 'QoL'
-    },
-    {
       title: 'Zero Packet Desync',
       description: 'Safely synced with client tick timing to prevent ghost items, visual glitches, or rubberbanding.',
       badge: 'Performance'
