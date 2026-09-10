@@ -48,29 +48,9 @@ const rightClickPotsData: ModWikiData = {
       description: 'Launch Minecraft, go to Options > Controls > Key Binds > RightClickPots, and bind your preferred potting key (default: C or Mouse Button 4).'
     }
   ],
-  commands: [
-    { command: '/rcp', description: 'Opens in-game settings overlay to customize delays and priority.' },
-    { command: '/rcp toggle', description: 'Quickly enable or disable fast potting.' },
-    { command: '/rcp reload', description: 'Reloads config/rightclickpots.json from disk.' },
-    { command: '/rcp priority <health|speed|fire>', description: 'Sets potion priority ranking.' }
-  ],
-  config: {
-    filename: 'config/rightclickpots.json',
-    language: 'json',
-    description: 'Fine-tune swap delays (in milliseconds) and inventory scanning behavior.',
-    code: `{
-  "enabled": true,
-  "keybind": "key.keyboard.c",
-  "swapDelayMs": 35,
-  "autoReswapToWeapon": true,
-  "allowInventoryPull": true,
-  "priorityOrder": [
-    "minecraft:splash_potion{Potion:'minecraft:strong_healing'}",
-    "minecraft:splash_potion{Potion:'minecraft:strong_regeneration'}",
-    "minecraft:splash_potion{Potion:'minecraft:strong_swiftness'}"
-  ],
-  "soundFeedback": true
-}`
+  configGuide: {
+    modMenuDescription: 'Access and customize all mod settings directly in-game through the Mod Menu graphical screen.',
+    quickToggleDescription: 'Quickly toggle RightClickPots on or off on the fly by configuring your toggle key in Options > Controls > Key Binds > RightClickPots.'
   },
   changelog: [
     {

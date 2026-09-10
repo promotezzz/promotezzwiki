@@ -6,8 +6,8 @@ import {
   X,
   Sparkles,
   Download,
-  Terminal,
   Sliders,
+  ToggleRight,
   HelpCircle,
   AlertCircle,
   BookOpen,
@@ -55,10 +55,7 @@ export const WikiPage: React.FC = () => {
         ...(mod?.installation && mod.installation.length > 0
           ? [{ id: 'installation', label: 'Installation', icon: Download }]
           : []),
-        ...(mod?.commands && mod.commands.length > 0
-          ? [{ id: 'commands', label: 'Commands', icon: Terminal }]
-          : []),
-        ...(mod?.config
+        ...(mod?.configGuide || mod?.config
           ? [{ id: 'configuration', label: 'Configuration', icon: Sliders }]
           : [])
       ]
@@ -384,49 +381,69 @@ export const WikiPage: React.FC = () => {
             </section>
           )}
 
-          {/* Section 4: Commands */}
-          {mod.commands && mod.commands.length > 0 && (
-            <section id="commands" className="scroll-mt-24 py-12 border-b border-white/[0.08]">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2">
-                Commands
-              </h2>
-              <p className="text-sm text-neutral-400 mb-6">
-                Use in-game chat commands to configure or test settings on the fly:
-              </p>
-
-              <div className="space-y-3">
-                {mod.commands.map((cmd, idx) => (
-                  <div
-                    key={idx}
-                    className="p-4 rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3"
-                  >
-                    <code className="font-mono text-xs sm:text-sm text-pink-400 bg-pink-500/10 px-2.5 py-1 rounded-lg border border-pink-500/20 w-fit">
-                      {cmd.command}
-                    </code>
-                    <span className="text-xs sm:text-sm text-neutral-400">
-                      {cmd.description}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {/* Section 5: Configuration */}
-          {mod.config && (
+          {/* Section 4: Configuration & Controls */}
+          {(mod.configGuide || mod.config) && (
             <section id="configuration" className="scroll-mt-24 py-12 border-b border-white/[0.08]">
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2">
-                Configuration
+                Configuration & Controls
               </h2>
-              <p className="text-sm text-neutral-400 mb-4">
-                {mod.config.description}
+              <p className="text-sm text-neutral-400 mb-6">
+                No file editing required. RightClickPots can be customized and toggled entirely in-game:
               </p>
 
-              <CodeBlock
-                code={mod.config.code}
-                language={mod.config.language}
-                filename={mod.config.filename}
-              />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Mod Menu Card */}
+                <div className="p-5 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl">
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <div className="flex items-center gap-2">
+                      <Sliders className="w-4 h-4 text-pink-400" />
+                      <h3 className="text-base font-semibold text-white">
+                        In-Game Settings
+                      </h3>
+                    </div>
+                    <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-pink-500/10 text-pink-400 border border-pink-500/20">
+                      Mod Menu
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed mb-3">
+                    {mod.configGuide?.modMenuDescription || 'Access and configure all settings directly in-game through the Mod Menu graphical screen.'}
+                  </p>
+                  <code className="text-[11px] font-mono text-cyan-300 bg-black/40 px-2.5 py-1 rounded border border-white/10 inline-block">
+                    Mod Menu &gt; RightClickPots
+                  </code>
+                </div>
+
+                {/* Quick Toggle Keybind Card */}
+                <div className="p-5 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-xl">
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <div className="flex items-center gap-2">
+                      <ToggleRight className="w-4 h-4 text-pink-400" />
+                      <h3 className="text-base font-semibold text-white">
+                        Quick-Toggle Mod
+                      </h3>
+                    </div>
+                    <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                      Keybind
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed mb-3">
+                    {mod.configGuide?.quickToggleDescription || 'Quickly toggle RightClickPots on or off on the fly by configuring your toggle key.'}
+                  </p>
+                  <code className="text-[11px] font-mono text-cyan-300 bg-black/40 px-2.5 py-1 rounded border border-white/10 inline-block">
+                    Options &gt; Controls &gt; Key Binds &gt; RightClickPots
+                  </code>
+                </div>
+              </div>
+
+              {mod.config && (
+                <div className="mt-6">
+                  <CodeBlock
+                    code={mod.config.code}
+                    language={mod.config.language}
+                    filename={mod.config.filename}
+                  />
+                </div>
+              )}
             </section>
           )}
 

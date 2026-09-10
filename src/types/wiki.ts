@@ -64,6 +64,10 @@ export interface ModWikiData {
   installation: ModInstallStep[];
   commands?: ModCommand[];
   config?: ModConfigSample;
+  configGuide?: {
+    modMenuDescription?: string;
+    quickToggleDescription?: string;
+  };
   changelog?: ModChangelogEntry[];
   faq?: ModFAQ[];
   issueReporting?: IssueReportingConfig;
