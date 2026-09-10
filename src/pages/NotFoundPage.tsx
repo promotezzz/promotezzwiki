@@ -56,11 +56,6 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ isRoot = false, slug
           )}
         </p>
       </div>
-
-      {/* Colorful Bottom Glow Tag */}
-      <footer className="relative z-10 mt-16 text-[11px] font-mono text-neutral-500">
-        promotezz.cc • direct access only
-      </footer>
     </div>
   );
 };
