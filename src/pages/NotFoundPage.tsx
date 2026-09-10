@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Sparkles, CornerDownLeft, Zap } from 'lucide-react';
+import React from 'react';
+import { Sparkles } from 'lucide-react';
 
 interface NotFoundPageProps {
   isRoot?: boolean;
@@ -8,17 +7,6 @@ interface NotFoundPageProps {
 }
 
 export const NotFoundPage: React.FC<NotFoundPageProps> = ({ isRoot = false, slug }) => {
-  const [targetSlug, setTargetSlug] = useState('');
-  const navigate = useNavigate();
-
-  const handleGo = (e: React.FormEvent) => {
-    e.preventDefault();
-    const clean = targetSlug.trim().replace(/^\//, '');
-    if (clean) {
-      navigate(`/${clean}`);
-    }
-  };
-
   return (
     <div className="relative min-h-screen bg-neutral-950 text-white flex flex-col items-center justify-center px-4 overflow-hidden selection:bg-pink-500 selection:text-white">
       {/* Colorful Animated Background Mesh Gradients */}
@@ -65,7 +53,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ isRoot = false, slug
           {isRoot ? 'There is no home page here' : 'Lost in the void'}
         </h2>
 
-        <p className="text-neutral-300 text-sm sm:text-base leading-relaxed max-w-md mb-8">
+        <p className="text-neutral-300 text-sm sm:text-base leading-relaxed max-w-md">
           {isRoot ? (
             <>
               This website operates strictly via <span className="text-pink-400 font-medium">direct sublinks</span>. You need a specific link given by Promotezz to view a mod wiki.
@@ -76,52 +64,6 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ isRoot = false, slug
             </>
           )}
         </p>
-
-        {/* Colorful Interactive Sublink Jump Bar */}
-        <div className="w-full max-w-sm mb-6 p-1 rounded-2xl bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 shadow-xl shadow-purple-500/20">
-          <form onSubmit={handleGo} className="relative flex items-center bg-neutral-900 rounded-[14px] overflow-hidden">
-            <span className="pl-3.5 pr-1 font-mono text-neutral-400 text-sm">/</span>
-            <input
-              type="text"
-              value={targetSlug}
-              onChange={(e) => setTargetSlug(e.target.value)}
-              placeholder="enter-mod-sublink..."
-              className="w-full py-3 pr-10 text-sm bg-transparent text-white placeholder:text-neutral-500 focus:outline-none font-mono"
-            />
-            <button
-              type="submit"
-              className="absolute right-2 p-2 rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white transition-all shadow-md active:scale-95"
-              title="Jump to sublink"
-            >
-              <CornerDownLeft className="w-4 h-4" />
-            </button>
-          </form>
-        </div>
-
-        {/* Colorful Quick Links / Examples */}
-        <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-mono text-neutral-400">
-          <span className="text-neutral-500 flex items-center gap-1">
-            <Zap className="w-3 h-3 text-amber-400" /> Examples:
-          </span>
-          <button
-            onClick={() => navigate('/rightclickpots')}
-            className="px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/15 border border-pink-500/40 text-pink-300 hover:text-pink-200 transition-all hover:scale-105"
-          >
-            /rightclickpots
-          </button>
-          <button
-            onClick={() => navigate('/my-mod-wiki')}
-            className="px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/15 border border-cyan-500/40 text-cyan-300 hover:text-cyan-200 transition-all hover:scale-105"
-          >
-            /my-mod-wiki
-          </button>
-          <button
-            onClick={() => navigate('/hud-customizer')}
-            className="px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/15 border border-purple-500/40 text-purple-300 hover:text-purple-200 transition-all hover:scale-105"
-          >
-            /hud-customizer
-          </button>
-        </div>
       </div>
 
       {/* Colorful Bottom Glow Tag */}
