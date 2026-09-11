@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AlertCircle, CheckCircle2, Send, MessageSquarePlus } from 'lucide-react';
+import { CheckCircle2, Send } from 'lucide-react';
 import type { IssueReportingConfig } from '../types/wiki';
 
 interface IssueReportBoxProps {
@@ -8,42 +8,18 @@ interface IssueReportBoxProps {
   config: IssueReportingConfig;
 }
 
-interface SubmittedIssue {
-  id: string;
-  title: string;
-  version: string;
-  timestamp: string;
-}
-
 export const IssueReportBox: React.FC<IssueReportBoxProps> = ({ modTitle, modSlug }) => {
-  const [title, setTitle] = useState('');
-  const [version, setVersion] = useState('');
+  const [description, setDescription] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [recentIssues, setRecentIssues] = useState<SubmittedIssue[]>(() => {
-    try {
-      const stored = localStorage.getItem(`issues_${modSlug}`);
-      return stored ? JSON.parse(stored) : [];
-    } catch {
-      return [];
-    }
-  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title.trim()) return;
+    if (!description.trim()) return;
 
     setIsSubmitting(true);
-
     const issueId = `ISSUE-${Math.floor(1000 + Math.random() * 9000)}`;
-    const newIssue: SubmittedIssue = {
-      id: issueId,
-      title: title.trim(),
-      version: version.trim() || 'Not specified',
-      timestamp: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-    };
 
-    // Forward issue automatically via silent email delivery
     try {
       await fetch('https://formsubmit.co/ajax/tjackbeatz@gmail.com', {
         method: 'POST',
@@ -52,147 +28,61 @@ export const IssueReportBox: React.FC<IssueReportBoxProps> = ({ modTitle, modSlu
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          _subject: `[Promotezz Wiki] Issue: ${modTitle} - ${title.trim()}`,
+          _subject: `[Promotezz Wiki] Issue: ${modTitle} - ${description.trim().slice(0, 50)}`,
           _template: 'table',
           _captcha: 'false',
           'Mod': modTitle,
           'Direct Sublink': `/${modSlug}`,
           'Issue ID': issueId,
-          'Issue Summary': title.trim(),
-          'Version': version.trim() || 'Not specified'
+          'Description': description.trim()
         })
       });
     } catch (err) {
       console.error('Submission sync error:', err);
     } finally {
       setIsSubmitting(false);
+      setSubmitted(true);
     }
-
-    const updated = [newIssue, ...recentIssues];
-    setRecentIssues(updated);
-    try {
-      localStorage.setItem(`issues_${modSlug}`, JSON.stringify(updated));
-    } catch (err) {
-      console.error(err);
-    }
-
-    setSubmitted(true);
   };
 
-  const handleResetForm = () => {
-    setTitle('');
-    setVersion('');
-    setSubmitted(false);
-  };
+  if (submitted) {
+    return (
+      <div className="flex items-center gap-3 py-3 text-sm text-emerald-800 bg-emerald-50 px-4 rounded-xl border border-emerald-200 max-w-xl">
+        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+        <span>Report received. Thank you!</span>
+        <button
+          onClick={() => {
+            setDescription('');
+            setSubmitted(false);
+          }}
+          className="ml-auto text-xs text-emerald-700 hover:text-emerald-900 underline underline-offset-2 cursor-pointer"
+        >
+          Send another
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <div className="pt-2">
-      <div className="rounded-2xl border border-neutral-200 bg-neutral-50/50 p-5 sm:p-7 shadow-xs">
-        <div className="mb-4">
-          <div className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-700 mb-1">
-            <AlertCircle className="w-3.5 h-3.5 text-emerald-600" />
-            <span>Issue Tracker</span>
-          </div>
-          <h3 className="text-xl font-semibold text-neutral-900 tracking-tight">
-            Publish an issue you found
-          </h3>
-          <p className="text-xs sm:text-sm text-neutral-500 mt-0.5">
-            Encountered a bug or unexpected behavior with {modTitle}?
-          </p>
-        </div>
-
-        {submitted ? (
-          <div className="p-4 rounded-xl bg-white border border-neutral-200 text-left space-y-2">
-            <div className="flex items-center gap-2 text-emerald-700 text-sm font-medium">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-              <span>Issue recorded successfully!</span>
-            </div>
-            <p className="text-xs text-neutral-600">
-              Thank you for reporting. Your issue has been logged.
-            </p>
-            <div className="pt-2">
-              <button
-                onClick={handleResetForm}
-                className="text-xs text-neutral-500 hover:text-neutral-900 underline underline-offset-4 cursor-pointer"
-              >
-                Submit another issue
-              </button>
-            </div>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-3 mt-3">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div className="sm:col-span-2">
-                <label className="block text-xs font-medium text-neutral-700 mb-1.5">
-                  Issue Summary <span className="text-neutral-400 font-normal">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. Potions fail to trigger when holding shield"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  className="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-neutral-200 rounded-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-emerald-600 focus:border-emerald-600 transition-colors"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-neutral-700 mb-1.5">
-                  Version
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. 1.21.1 Fabric"
-                  value={version}
-                  onChange={(e) => setVersion(e.target.value)}
-                  className="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-neutral-200 rounded-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-emerald-600 focus:border-emerald-600 transition-colors"
-                />
-              </div>
-            </div>
-
-            <div className="flex justify-end pt-2">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-medium bg-neutral-900 hover:bg-neutral-800 text-white transition-all shadow-sm active:scale-95 disabled:opacity-50 cursor-pointer"
-              >
-                <Send className={`w-3.5 h-3.5 ${isSubmitting ? 'animate-pulse' : ''}`} />
-                <span>{isSubmitting ? 'Publishing...' : 'Publish Issue'}</span>
-              </button>
-            </div>
-          </form>
-        )}
-
-        {/* Recently published issues on this wiki */}
-        {recentIssues.length > 0 && (
-          <div className="mt-6 pt-5 border-t border-neutral-200">
-            <div className="flex items-center gap-2 mb-2.5">
-              <MessageSquarePlus className="w-3.5 h-3.5 text-neutral-400" />
-              <h4 className="text-xs font-medium tracking-wide text-neutral-500">
-                Published Reports ({recentIssues.length})
-              </h4>
-            </div>
-            <div className="space-y-1.5">
-              {recentIssues.slice(0, 5).map((iss) => (
-                <div
-                  key={iss.id}
-                  className="p-2.5 rounded-lg border border-neutral-200 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-xs shadow-2xs"
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="text-neutral-400 text-[11px] font-medium">{iss.id}</span>
-                    <span className="font-medium text-neutral-800">{iss.title}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-neutral-400 text-[11px]">
-                    <span>{iss.version}</span>
-                    <span>•</span>
-                    <span>{iss.timestamp}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+    <form onSubmit={handleSubmit} className="max-w-xl">
+      <div className="flex flex-col sm:flex-row gap-2.5">
+        <input
+          type="text"
+          required
+          placeholder="Describe what happened or what's broken..."
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="flex-1 px-4 py-2.5 text-sm bg-neutral-50 border border-neutral-200 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-emerald-600 focus:border-emerald-600 transition-colors"
+        />
+        <button
+          type="submit"
+          disabled={isSubmitting || !description.trim()}
+          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium bg-neutral-900 hover:bg-neutral-800 text-white transition-all disabled:opacity-40 cursor-pointer shrink-0"
+        >
+          <Send className={`w-3.5 h-3.5 ${isSubmitting ? 'animate-pulse' : ''}`} />
+          <span>{isSubmitting ? 'Sending...' : 'Submit'}</span>
+        </button>
       </div>
-    </div>
+    </form>
   );
 };

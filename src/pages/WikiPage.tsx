@@ -353,8 +353,8 @@ export const WikiPage: React.FC = () => {
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 mb-2">
                 Report an Issue
               </h2>
-              <p className="text-sm text-neutral-500 mb-6">
-                Encountered a bug or unexpected behavior? Submit an issue report directly below:
+              <p className="text-base text-neutral-600 mb-4 leading-relaxed">
+                Found a bug or issue? Submit a quick report below:
               </p>
 
               <IssueReportBox
