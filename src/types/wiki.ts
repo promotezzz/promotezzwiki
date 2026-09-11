@@ -61,7 +61,7 @@ export interface ModWikiData {
   downloads?: ModDownload[];
   overview: string[];
   features?: ModFeature[];
-  installation: ModInstallStep[];
+  installation?: ModInstallStep[];
   commands?: ModCommand[];
   config?: ModConfigSample;
   configGuide?: {

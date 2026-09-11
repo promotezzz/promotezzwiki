@@ -30,24 +30,6 @@ const rightClickPotsData: ModWikiData = {
       badge: 'Performance'
     }
   ],
-  installation: [
-    {
-      step: 1,
-      title: 'Install Fabric Loader',
-      description: 'Ensure Fabric Loader (0.16.0 or higher) is installed for Minecraft 1.21.1 or above.'
-    },
-    {
-      step: 2,
-      title: 'Download from Modrinth & Install Fabric API',
-      description: 'Download RightClickPots from Modrinth and place RightClickPots.jar alongside Fabric API inside your .minecraft/mods folder.',
-      commandOrPath: '%appdata%/.minecraft/mods/RightClickPots.jar'
-    },
-    {
-      step: 3,
-      title: 'Configure Keybind in Controls',
-      description: 'Launch Minecraft, go to Options > Controls > Key Binds > RightClickPots, and bind your preferred potting key (default: C or Mouse Button 4).'
-    }
-  ],
   configGuide: {
     modMenuDescription: 'Access and customize all mod settings directly in-game through the Mod Menu graphical screen.',
     quickToggleDescription: 'Quickly toggle RightClickPots on or off on the fly by configuring your toggle key in Options > Controls > Key Binds > RightClickPots.'

@@ -5,7 +5,6 @@ import {
   Menu,
   X,
   Sparkles,
-  Download,
   Sliders,
   HelpCircle,
   AlertCircle,
@@ -48,13 +47,10 @@ export const WikiPage: React.FC = () => {
       ]
     },
     {
-      group: 'Getting Started',
+      group: 'Configuration',
       items: [
-        ...(mod?.installation && mod.installation.length > 0
-          ? [{ id: 'installation', label: 'Installation', icon: Download }]
-          : []),
         ...(mod?.configGuide || mod?.config
-          ? [{ id: 'configuration', label: 'Configuration', icon: Sliders }]
+          ? [{ id: 'configuration', label: 'Controls & Settings', icon: Sliders }]
           : [])
       ]
     },
@@ -114,46 +110,25 @@ export const WikiPage: React.FC = () => {
   }
 
   return (
-    <div className="relative min-h-screen bg-neutral-950 text-white flex flex-col selection:bg-pink-500 selection:text-white">
-      {/* Ambient Animated Background Mesh Gradients */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        {/* Violet / Pink glowing orb */}
-        <div className="absolute -top-32 -left-32 w-96 h-96 sm:w-[500px] sm:h-[500px] bg-gradient-to-br from-pink-600/25 via-purple-600/20 to-transparent rounded-full blur-3xl animate-pulse" />
-        
-        {/* Cyan / Blue glowing orb */}
-        <div className="absolute top-1/4 -right-32 w-96 h-96 sm:w-[550px] sm:h-[550px] bg-gradient-to-bl from-cyan-500/20 via-blue-600/15 to-transparent rounded-full blur-3xl" />
-        
-        {/* Amber / Yellow bottom glow */}
-        <div className="absolute -bottom-32 left-1/4 w-80 h-80 sm:w-[450px] sm:h-[450px] bg-gradient-to-t from-amber-500/15 via-rose-500/10 to-transparent rounded-full blur-3xl" />
-        
-        {/* Subtle grid pattern overlay */}
-        <div 
-          className="absolute inset-0 opacity-[0.15]" 
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.4) 1px, transparent 0)`,
-            backgroundSize: '32px 32px'
-          }}
-        />
-      </div>
-
+    <div className="relative min-h-screen bg-white text-neutral-900 flex flex-col selection:bg-purple-100 selection:text-purple-900">
       {/* Mobile Sticky Header with Menu Toggle */}
-      <header className="lg:hidden sticky top-0 z-40 bg-neutral-950/85 backdrop-blur-xl border-b border-white/[0.08] px-4 py-3 flex items-center justify-between">
+      <header className="lg:hidden sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-neutral-200 px-4 py-3 flex items-center justify-between">
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle Navigation Menu"
-          className="flex items-center gap-2 text-sm text-neutral-300 hover:text-white px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10"
+          className="flex items-center gap-2 text-sm text-neutral-700 hover:text-neutral-900 px-2.5 py-1.5 rounded-lg bg-neutral-100 border border-neutral-200"
         >
           {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           <span className="font-medium">Menu</span>
         </button>
 
-        <span className="font-bold text-sm tracking-tight text-white">
+        <span className="font-bold text-sm tracking-tight text-neutral-900">
           {mod.title}
         </span>
 
         <Link
           to="/browse"
-          className="inline-flex items-center gap-1.5 text-xs text-neutral-400 hover:text-white px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10"
+          className="inline-flex items-center gap-1.5 text-xs text-neutral-600 hover:text-neutral-900 px-2.5 py-1.5 rounded-lg bg-neutral-100 border border-neutral-200"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Browse</span>
@@ -165,28 +140,28 @@ export const WikiPage: React.FC = () => {
         {/* Left Navigation Sidebar */}
         <aside
           className={`
-            fixed inset-y-0 left-0 z-50 w-72 bg-neutral-950/95 lg:bg-transparent backdrop-blur-2xl lg:backdrop-blur-none
-            p-6 lg:py-12 border-r border-white/[0.08] lg:border-white/[0.06] overflow-y-auto transition-transform duration-200 ease-in-out
+            fixed inset-y-0 left-0 z-50 w-72 bg-white lg:bg-[#fafafa]/80
+            p-6 lg:py-12 border-r border-neutral-200/80 overflow-y-auto transition-transform duration-200 ease-in-out
             lg:static lg:translate-x-0 shrink-0
-            ${mobileMenuOpen ? 'translate-x-0 shadow-2xl shadow-black' : '-translate-x-full'}
+            ${mobileMenuOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'}
           `}
         >
           {/* Top Bar inside Sidebar */}
           <div className="mb-8">
             <Link
               to="/browse"
-              className="inline-flex items-center gap-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors group mb-4"
+              className="inline-flex items-center gap-2 text-xs font-medium text-neutral-500 hover:text-neutral-900 transition-colors group mb-4"
             >
-              <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-0.5 text-neutral-400 group-hover:text-pink-400" />
+              <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-0.5 text-neutral-400 group-hover:text-purple-600" />
               <span>Browse all wikis</span>
             </Link>
 
             <div className="flex items-center gap-2 mt-2">
-              <h2 className="text-xl font-bold tracking-tight text-white">
+              <h2 className="text-xl font-bold tracking-tight text-neutral-900">
                 {mod.title}
               </h2>
               {mod.version && (
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-pink-500/10 text-pink-400 border border-pink-500/20">
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200">
                   {mod.version}
                 </span>
               )}
@@ -197,7 +172,7 @@ export const WikiPage: React.FC = () => {
           <nav className="space-y-6">
             {navGroups.map((group) => (
               <div key={group.group}>
-                <h3 className="text-[11px] font-semibold tracking-wider text-neutral-500 uppercase mb-2 px-2">
+                <h3 className="text-[11px] font-semibold tracking-wider text-neutral-400 uppercase mb-2 px-2">
                   {group.group}
                 </h3>
                 <ul className="space-y-1">
@@ -212,12 +187,12 @@ export const WikiPage: React.FC = () => {
                             w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all text-left cursor-pointer
                             ${
                               isActive
-                                ? 'bg-pink-500/10 text-pink-400 font-semibold border border-pink-500/20 shadow-sm shadow-pink-500/5'
-                                : 'text-neutral-400 hover:text-neutral-200 hover:bg-white/[0.04]'
+                                ? 'bg-purple-50 text-purple-700 font-semibold border border-purple-200/80 shadow-xs'
+                                : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100/70'
                             }
                           `}
                         >
-                          <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-pink-400' : 'text-neutral-500'}`} />
+                          <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-purple-600' : 'text-neutral-400'}`} />
                           <span className="truncate">{item.label}</span>
                         </button>
                       </li>
@@ -233,28 +208,28 @@ export const WikiPage: React.FC = () => {
         {mobileMenuOpen && (
           <div
             onClick={() => setMobileMenuOpen(false)}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+            className="fixed inset-0 bg-black/20 backdrop-blur-xs z-40 lg:hidden"
           />
         )}
 
         {/* Center Main Documentation Content */}
         <main className="flex-1 min-w-0 py-8 sm:py-12 lg:px-12">
           {/* Section 1: Overview */}
-          <section id="overview" className="scroll-mt-24 pb-12 border-b border-white/[0.08]">
+          <section id="overview" className="scroll-mt-24 pb-12 border-b border-neutral-200/80">
             <div className="flex flex-wrap items-center gap-2 mb-4">
               {mod.loader && (
-                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-pink-500/15 text-pink-400 border border-pink-500/30">
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 border border-purple-200">
                   {mod.loader}
                 </span>
               )}
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-neutral-900 mb-6">
               What is {mod.title}?
             </h1>
 
             {mod.overview && mod.overview.length > 0 && (
-              <div className="space-y-4 text-neutral-300 text-base sm:text-lg leading-relaxed">
+              <div className="space-y-4 text-neutral-600 text-base sm:text-lg leading-relaxed">
                 {mod.overview.map((paragraph, idx) => (
                   <p key={idx}>{paragraph}</p>
                 ))}
@@ -274,8 +249,8 @@ export const WikiPage: React.FC = () => {
                       inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer
                       ${
                         dl.type === 'modrinth'
-                          ? 'bg-[#1bd96a]/15 text-[#1bd96a] border border-[#1bd96a]/30 hover:bg-[#1bd96a]/25 hover:border-[#1bd96a]/50 shadow-sm shadow-[#1bd96a]/10'
-                          : 'bg-white/5 text-neutral-300 border border-white/10 hover:bg-white/10 hover:text-white'
+                          ? 'bg-emerald-50 text-emerald-700 border border-emerald-300 hover:bg-emerald-100 shadow-xs'
+                          : 'bg-neutral-100 text-neutral-800 border border-neutral-200 hover:bg-neutral-200'
                       }
                     `}
                   >
@@ -288,12 +263,12 @@ export const WikiPage: React.FC = () => {
 
             {/* Platform & Requirements badges */}
             {mod.requirements && mod.requirements.length > 0 && (
-              <div className="mt-8 pt-6 border-t border-white/[0.06] flex flex-wrap items-center gap-2">
+              <div className="mt-8 pt-6 border-t border-neutral-100 flex flex-wrap items-center gap-2">
                 <span className="text-xs text-neutral-500 font-medium mr-1">Compatibility:</span>
                 {mod.requirements.map((req, idx) => (
                   <span
                     key={idx}
-                    className="text-xs font-mono px-2.5 py-1 rounded-md bg-white/[0.04] text-neutral-300 border border-white/10"
+                    className="text-xs font-mono px-2.5 py-1 rounded-md bg-neutral-100 text-neutral-700 border border-neutral-200"
                   >
                     {req}
                   </span>
@@ -304,21 +279,21 @@ export const WikiPage: React.FC = () => {
 
           {/* Section 2: Features */}
           {mod.features && mod.features.length > 0 && (
-            <section id="features" className="scroll-mt-24 py-12 border-b border-white/[0.08]">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-3">
+            <section id="features" className="scroll-mt-24 py-12 border-b border-neutral-200/80">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 mb-3">
                 What are the features?
               </h2>
-              <p className="text-base text-neutral-300 mb-6 leading-relaxed">
+              <p className="text-base text-neutral-600 mb-6 leading-relaxed">
                 {mod.title} comes with engineered utilities optimized for PvP and rapid hotbar manipulation:
               </p>
 
-              <ul className="space-y-4 text-neutral-300 text-base leading-relaxed">
+              <ul className="space-y-4 text-neutral-600 text-base leading-relaxed">
                 {mod.features.map((feature, idx) => (
                   <li key={idx} className="flex items-start gap-3">
-                    <span className="text-pink-400 font-bold text-lg leading-none mt-1">•</span>
+                    <span className="text-purple-600 font-bold text-lg leading-none mt-1">•</span>
                     <div>
-                      <strong className="text-white font-semibold">{feature.title}</strong>
-                      <span className="text-neutral-400"> — {feature.description}</span>
+                      <strong className="text-neutral-900 font-semibold">{feature.title}</strong>
+                      <span className="text-neutral-600"> — {feature.description}</span>
                     </div>
                   </li>
                 ))}
@@ -326,67 +301,36 @@ export const WikiPage: React.FC = () => {
             </section>
           )}
 
-          {/* Section 3: Installation */}
-          {mod.installation && mod.installation.length > 0 && (
-            <section id="installation" className="scroll-mt-24 py-12 border-b border-white/[0.08]">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-3">
-                Installation
-              </h2>
-              <p className="text-base text-neutral-300 mb-6 leading-relaxed">
-                Follow these quick steps to get {mod.title} running in your client:
-              </p>
-
-              <ol className="space-y-5 text-neutral-300 text-base leading-relaxed">
-                {mod.installation.map((step) => (
-                  <li key={step.step} className="flex items-start gap-3.5">
-                    <span className="w-6 h-6 rounded-full bg-pink-500/10 text-pink-400 border border-pink-500/20 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                      {step.step}
-                    </span>
-                    <div className="flex-1 min-w-0">
-                      <strong className="text-white font-semibold">{step.title}</strong>
-                      <p className="text-neutral-300 mt-1 leading-relaxed">{step.description}</p>
-                      {step.commandOrPath && (
-                        <code className="text-xs font-mono text-cyan-300 bg-white/5 border border-white/10 px-2.5 py-1 rounded inline-block mt-2">
-                          {step.commandOrPath}
-                        </code>
-                      )}
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </section>
-          )}
-
-          {/* Section 4: Configuration & Controls */}
+          {/* Section 3: Configuration & Controls */}
           {(mod.configGuide || mod.config) && (
-            <section id="configuration" className="scroll-mt-24 py-12 border-b border-white/[0.08]">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-3">
+            <section id="configuration" className="scroll-mt-24 py-12 border-b border-neutral-200/80">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 mb-3">
                 Configuration & Controls
               </h2>
-              <p className="text-base text-neutral-300 mb-6 leading-relaxed">
+              <p className="text-base text-neutral-600 mb-6 leading-relaxed">
                 No manual file editing required. RightClickPots can be customized and toggled entirely in-game:
               </p>
 
-              <ul className="space-y-4 text-neutral-300 text-base leading-relaxed">
+              <ul className="space-y-4 text-neutral-600 text-base leading-relaxed">
                 <li className="flex items-start gap-3">
-                  <span className="text-pink-400 font-bold text-lg leading-none mt-1">•</span>
+                  <span className="text-purple-600 font-bold text-lg leading-none mt-1">•</span>
                   <div>
-                    <strong className="text-white font-semibold">In-Game Settings (Mod Menu)</strong>
-                    <span className="text-neutral-400"> — {mod.configGuide?.modMenuDescription || 'Access and configure all settings directly in-game through the Mod Menu graphical screen.'}</span>
+                    <strong className="text-neutral-900 font-semibold">In-Game Settings (Mod Menu)</strong>
+                    <span className="text-neutral-600"> — {mod.configGuide?.modMenuDescription || 'Access and configure all settings directly in-game through the Mod Menu graphical screen.'}</span>
                     <div className="mt-1.5">
-                      <code className="text-xs font-mono text-cyan-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">
+                      <code className="text-xs font-mono text-neutral-800 bg-neutral-100 border border-neutral-200 px-2 py-0.5 rounded">
                         Mod Menu &gt; RightClickPots
                       </code>
                     </div>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-pink-400 font-bold text-lg leading-none mt-1">•</span>
+                  <span className="text-purple-600 font-bold text-lg leading-none mt-1">•</span>
                   <div>
-                    <strong className="text-white font-semibold">Quick-Toggle Keybind</strong>
-                    <span className="text-neutral-400"> — {mod.configGuide?.quickToggleDescription || 'Quickly toggle RightClickPots on or off on the fly by configuring your toggle key.'}</span>
+                    <strong className="text-neutral-900 font-semibold">Quick-Toggle Keybind</strong>
+                    <span className="text-neutral-600"> — {mod.configGuide?.quickToggleDescription || 'Quickly toggle RightClickPots on or off on the fly by configuring your toggle key.'}</span>
                     <div className="mt-1.5">
-                      <code className="text-xs font-mono text-cyan-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded">
+                      <code className="text-xs font-mono text-neutral-800 bg-neutral-100 border border-neutral-200 px-2 py-0.5 rounded">
                         Options &gt; Controls &gt; Key Binds &gt; RightClickPots
                       </code>
                     </div>
@@ -396,20 +340,20 @@ export const WikiPage: React.FC = () => {
             </section>
           )}
 
-          {/* Section 5: FAQ */}
+          {/* Section 4: FAQ */}
           {mod.faq && mod.faq.length > 0 && (
-            <section id="faq" className="scroll-mt-24 py-12 border-b border-white/[0.08]">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-6">
+            <section id="faq" className="scroll-mt-24 py-12 border-b border-neutral-200/80">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 mb-6">
                 Frequently Asked Questions
               </h2>
 
               <div className="space-y-6 text-base leading-relaxed">
                 {mod.faq.map((item, idx) => (
                   <div key={idx}>
-                    <h3 className="text-lg font-semibold text-white mb-1.5">
+                    <h3 className="text-lg font-semibold text-neutral-900 mb-1.5">
                       {item.question}
                     </h3>
-                    <p className="text-neutral-300">
+                    <p className="text-neutral-600">
                       {item.answer}
                     </p>
                   </div>
@@ -418,13 +362,13 @@ export const WikiPage: React.FC = () => {
             </section>
           )}
 
-          {/* Section 7: Issue Tracker */}
+          {/* Section 5: Issue Tracker */}
           {mod.issueReporting?.enabled && (
             <section id="issues" className="scroll-mt-24 py-12">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 mb-2">
                 Report an Issue
               </h2>
-              <p className="text-sm text-neutral-400 mb-6">
+              <p className="text-sm text-neutral-500 mb-6">
                 Encountered a bug or unexpected behavior? Submit an issue report directly below:
               </p>
 
@@ -439,10 +383,10 @@ export const WikiPage: React.FC = () => {
 
         {/* Right Sidebar: On This Page Table of Contents */}
         <aside className="hidden xl:block w-56 shrink-0 py-12 pl-8 sticky top-0 h-screen overflow-y-auto">
-          <h4 className="text-[11px] font-semibold uppercase tracking-wider text-neutral-500 mb-4">
+          <h4 className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 mb-4">
             On this page
           </h4>
-          <ul className="space-y-2 border-l border-white/[0.08] pl-3">
+          <ul className="space-y-2 border-l border-neutral-200 pl-3">
             {allNavItems.map((item) => {
               const isActive = activeSection === item.id;
               return (
@@ -453,8 +397,8 @@ export const WikiPage: React.FC = () => {
                       text-xs transition-colors text-left block w-full truncate py-1 cursor-pointer
                       ${
                         isActive
-                          ? 'text-pink-400 font-semibold'
-                          : 'text-neutral-500 hover:text-neutral-300'
+                          ? 'text-purple-600 font-semibold'
+                          : 'text-neutral-500 hover:text-neutral-900'
                       }
                     `}
                   >

@@ -86,34 +86,34 @@ export const IssueReportBox: React.FC<IssueReportBoxProps> = ({ modTitle, modSlu
   };
 
   return (
-    <section id="issues" className="scroll-mt-20 pt-10 border-t border-white/10">
-      <div className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-5 sm:p-7 shadow-2xl">
+    <div className="pt-2">
+      <div className="rounded-2xl border border-neutral-200 bg-neutral-50/50 p-5 sm:p-7 shadow-xs">
         <div className="mb-4">
-          <div className="inline-flex items-center gap-1.5 text-xs font-medium text-pink-400 mb-1">
-            <AlertCircle className="w-3.5 h-3.5 text-pink-400" />
+          <div className="inline-flex items-center gap-1.5 text-xs font-medium text-purple-600 mb-1">
+            <AlertCircle className="w-3.5 h-3.5 text-purple-600" />
             <span>Issue Tracker</span>
           </div>
-          <h2 className="text-xl font-semibold text-white tracking-tight">
+          <h3 className="text-xl font-semibold text-neutral-900 tracking-tight">
             Publish an issue you found
-          </h2>
-          <p className="text-xs sm:text-sm text-neutral-400 mt-0.5">
+          </h3>
+          <p className="text-xs sm:text-sm text-neutral-500 mt-0.5">
             Encountered a bug or unexpected behavior with {modTitle}?
           </p>
         </div>
 
         {submitted ? (
-          <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10 text-left space-y-2">
-            <div className="flex items-center gap-2 text-emerald-400 text-sm font-medium">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+          <div className="p-4 rounded-xl bg-white border border-neutral-200 text-left space-y-2">
+            <div className="flex items-center gap-2 text-emerald-700 text-sm font-medium">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
               <span>Issue recorded successfully!</span>
             </div>
-            <p className="text-xs text-neutral-400">
+            <p className="text-xs text-neutral-600">
               Thank you for reporting. Your issue has been logged.
             </p>
             <div className="pt-2">
               <button
                 onClick={handleResetForm}
-                className="text-xs text-neutral-400 hover:text-white underline underline-offset-4"
+                className="text-xs text-neutral-500 hover:text-neutral-900 underline underline-offset-4 cursor-pointer"
               >
                 Submit another issue
               </button>
@@ -123,8 +123,8 @@ export const IssueReportBox: React.FC<IssueReportBoxProps> = ({ modTitle, modSlu
           <form onSubmit={handleSubmit} className="space-y-3 mt-3">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div className="sm:col-span-2">
-                <label className="block text-xs font-medium text-neutral-300 mb-1.5">
-                  Issue Summary <span className="text-neutral-500 font-normal">*</span>
+                <label className="block text-xs font-medium text-neutral-700 mb-1.5">
+                  Issue Summary <span className="text-neutral-400 font-normal">*</span>
                 </label>
                 <input
                   type="text"
@@ -132,12 +132,12 @@ export const IssueReportBox: React.FC<IssueReportBoxProps> = ({ modTitle, modSlu
                   placeholder="e.g. Potions fail to trigger when holding shield"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full px-3 py-2 text-xs sm:text-sm bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-neutral-500 focus:outline-none focus:ring-1 focus:ring-pink-500/60 focus:border-pink-500/40 transition-colors"
+                  className="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-neutral-200 rounded-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-purple-600 focus:border-purple-600 transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-neutral-300 mb-1.5">
+                <label className="block text-xs font-medium text-neutral-700 mb-1.5">
                   Version
                 </label>
                 <input
@@ -145,7 +145,7 @@ export const IssueReportBox: React.FC<IssueReportBoxProps> = ({ modTitle, modSlu
                   placeholder="e.g. 1.21.1 Fabric"
                   value={version}
                   onChange={(e) => setVersion(e.target.value)}
-                  className="w-full px-3 py-2 text-xs sm:text-sm bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-neutral-500 focus:outline-none focus:ring-1 focus:ring-pink-500/60 focus:border-pink-500/40 transition-colors"
+                  className="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-neutral-200 rounded-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-purple-600 focus:border-purple-600 transition-colors"
                 />
               </div>
             </div>
@@ -154,7 +154,7 @@ export const IssueReportBox: React.FC<IssueReportBoxProps> = ({ modTitle, modSlu
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-medium bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:from-pink-400 hover:to-purple-500 text-white transition-all shadow-md shadow-purple-500/20 active:scale-95 disabled:opacity-50"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-medium bg-neutral-900 hover:bg-neutral-800 text-white transition-all shadow-sm active:scale-95 disabled:opacity-50 cursor-pointer"
               >
                 <Send className={`w-3.5 h-3.5 ${isSubmitting ? 'animate-pulse' : ''}`} />
                 <span>{isSubmitting ? 'Publishing...' : 'Publish Issue'}</span>
@@ -165,24 +165,24 @@ export const IssueReportBox: React.FC<IssueReportBoxProps> = ({ modTitle, modSlu
 
         {/* Recently published issues on this wiki */}
         {recentIssues.length > 0 && (
-          <div className="mt-6 pt-5 border-t border-white/10">
+          <div className="mt-6 pt-5 border-t border-neutral-200">
             <div className="flex items-center gap-2 mb-2.5">
-              <MessageSquarePlus className="w-3.5 h-3.5 text-neutral-500" />
-              <h3 className="text-xs font-medium tracking-wide text-neutral-400">
+              <MessageSquarePlus className="w-3.5 h-3.5 text-neutral-400" />
+              <h4 className="text-xs font-medium tracking-wide text-neutral-500">
                 Published Reports ({recentIssues.length})
-              </h3>
+              </h4>
             </div>
             <div className="space-y-1.5">
               {recentIssues.slice(0, 5).map((iss) => (
                 <div
                   key={iss.id}
-                  className="p-2.5 rounded-lg border border-white/10 bg-white/[0.03] flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-xs"
+                  className="p-2.5 rounded-lg border border-neutral-200 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-xs shadow-2xs"
                 >
                   <div className="flex items-center gap-2">
-                    <span className="text-neutral-500 text-[11px] font-medium">{iss.id}</span>
-                    <span className="font-medium text-white">{iss.title}</span>
+                    <span className="text-neutral-400 text-[11px] font-medium">{iss.id}</span>
+                    <span className="font-medium text-neutral-800">{iss.title}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-neutral-500 text-[11px]">
+                  <div className="flex items-center gap-2 text-neutral-400 text-[11px]">
                     <span>{iss.version}</span>
                     <span>•</span>
                     <span>{iss.timestamp}</span>
@@ -193,6 +193,6 @@ export const IssueReportBox: React.FC<IssueReportBoxProps> = ({ modTitle, modSlu
           </div>
         )}
       </div>
-    </section>
+    </div>
   );
 };
