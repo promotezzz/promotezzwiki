@@ -264,7 +264,7 @@ export const WikiPage: React.FC = () => {
                 What are the features?
               </h2>
               <p className="text-base text-neutral-600 mb-6 leading-relaxed">
-                {mod.title} comes with engineered utilities optimized for PvP and rapid hotbar manipulation:
+                Key features included with {mod.title}:
               </p>
 
               <ul className="space-y-4 text-neutral-600 text-base leading-relaxed">
@@ -288,7 +288,7 @@ export const WikiPage: React.FC = () => {
                 Configuration & Controls
               </h2>
               <p className="text-base text-neutral-600 mb-6 leading-relaxed">
-                No manual file editing required. RightClickPots can be customized and toggled entirely in-game:
+                RightClickPots can be customized and toggled in-game:
               </p>
 
               <ul className="space-y-4 text-neutral-600 text-base leading-relaxed">

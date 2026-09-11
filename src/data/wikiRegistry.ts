@@ -3,63 +3,49 @@ import type { ModWikiData } from '../types/wiki';
 const rightClickPotsData: ModWikiData = {
   slug: 'rightclickpots',
   title: 'RightClickPots',
-  tagline: 'Client-side Fabric mod for instant potion usage, fast potting hotkeys, and automated weapon re-swap.',
+  tagline: 'When you right click a potion, it throws it on you instantly.',
   version: 'v1.0.0',
   loader: 'Fabric 1.21.1+',
   author: 'Promotezz',
   lastUpdated: 'September 2026',
-  requirements: ['Minecraft 1.21.1+', 'Fabric Loader 0.16+', 'Fabric API', 'Java 21+'],
+  requirements: ['Minecraft 1.21.1+', 'Fabric Loader', 'Fabric API'],
   downloads: [
     { label: 'View on Modrinth', url: 'https://modrinth.com/mod/rightclickpots', primary: true, type: 'modrinth' },
     { label: 'GitHub Repository', url: 'https://github.com/promotezzz/RightClickPots', type: 'github' }
   ],
   overview: [
-    'RightClickPots is an ultra-responsive client-side utility mod engineered for fast-paced combat and PvP on Minecraft 1.21.1 and higher. It eliminates cumbersome hotbar slot swapping by letting you instantly splash or drink potions with a single click or hotkey.',
-    'After triggering, RightClickPots automatically returns your active hand to your primary weapon or previous slot in under 40 milliseconds, completely preventing attack delay resets.',
-    'Built with pure client-side packet timing—fully compatible with Lunar, Dawn, and standard Fabric modpacks on 1.21.1+.'
+    'RightClickPots is a simple client-side Fabric mod for Minecraft 1.21.1 and up. When you right-click a potion, it throws it on you instantly.'
   ],
   features: [
     {
-      title: 'Instant Splash & Auto Re-Swap',
-      description: 'Splashes health or buff potions and snaps your hotbar back to your sword or weapon instantly.',
-      badge: 'Combat'
+      title: 'Instant Potion Throw',
+      description: 'Right-click any potion to instantly throw it on yourself.',
+      badge: 'Core'
     },
     {
-      title: 'Zero Packet Desync',
-      description: 'Safely synced with client tick timing to prevent ghost items, visual glitches, or rubberbanding.',
-      badge: 'Performance'
+      title: 'Quick Toggle',
+      description: 'Quickly toggle the mod on or off with a keybind.',
+      badge: 'Controls'
     }
   ],
   configGuide: {
-    modMenuDescription: 'Access and customize all mod settings directly in-game through the Mod Menu graphical screen.',
-    quickToggleDescription: 'Quickly toggle RightClickPots on or off on the fly by configuring your toggle key in Options > Controls > Key Binds > RightClickPots.'
+    modMenuDescription: 'Configure mod settings in-game via Mod Menu.',
+    quickToggleDescription: 'Toggle the mod on or off with a keybind set in Options > Controls > Key Binds > RightClickPots.'
   },
-  changelog: [
-    {
-      version: 'v1.0.0',
-      date: '2026-09-10',
-      changes: [
-        'Initial release of RightClickPots client mod',
-        'Added sub-40ms automatic hotbar slot restoration',
-        'Added custom keybind support in standard Minecraft controls menu',
-        'Integrated zero-desync inventory scanner'
-      ]
-    }
-  ],
   faq: [
     {
-      question: 'Is RightClickPots allowed on multiplayer servers?',
-      answer: 'RightClickPots runs completely client-side. Always review your specific server rules regarding fast potting or slot-swap utilities.'
+      question: 'What does RightClickPots do?',
+      answer: 'When you right-click a potion, it throws it on you instantly.'
     },
     {
-      question: 'Does this interfere with my crosshair or attack cooldown?',
-      answer: 'No. The mod uses sub-tick swapping to preserve your main weapon attack meter without causing swing delays.'
+      question: 'What versions does it support?',
+      answer: 'RightClickPots is Fabric only, for Minecraft 1.21.1 and up.'
     }
   ],
   issueReporting: {
     enabled: true,
     githubRepoUrl: 'https://github.com/promotezz/RightClickPots',
-    submitHint: 'Include your Minecraft version, Fabric Loader version, and any other installed combat or HUD mods.'
+    submitHint: 'Include your Minecraft version and any details.'
   }
 };
 
