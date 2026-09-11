@@ -47,15 +47,15 @@ export const IssueReportBox: React.FC<IssueReportBoxProps> = ({ modTitle, modSlu
 
   if (submitted) {
     return (
-      <div className="flex items-center gap-3 py-3 text-sm text-emerald-800 bg-emerald-50 px-4 rounded-xl border border-emerald-200 max-w-xl">
-        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+      <div className="flex items-center gap-3 py-3 text-sm text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40 px-4 rounded-xl border border-emerald-200 dark:border-emerald-800 max-w-xl">
+        <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
         <span>Report received. Thank you!</span>
         <button
           onClick={() => {
             setDescription('');
             setSubmitted(false);
           }}
-          className="ml-auto text-xs text-emerald-700 hover:text-emerald-900 underline underline-offset-2 cursor-pointer"
+          className="ml-auto text-xs text-emerald-700 dark:text-emerald-400 hover:text-emerald-900 dark:hover:text-emerald-200 underline underline-offset-2 cursor-pointer"
         >
           Send another
         </button>
@@ -72,12 +72,12 @@ export const IssueReportBox: React.FC<IssueReportBoxProps> = ({ modTitle, modSlu
           placeholder="Describe the issue (make sure to add the version too)..."
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="flex-1 px-4 py-2.5 text-sm bg-neutral-50 border border-neutral-200 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-emerald-600 focus:border-emerald-600 transition-colors"
+          className="flex-1 px-4 py-2.5 text-sm bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-1 focus:ring-emerald-600 focus:border-emerald-600 dark:focus:ring-emerald-500 dark:focus:border-emerald-500 transition-colors"
         />
         <button
           type="submit"
           disabled={isSubmitting || !description.trim()}
-          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium bg-neutral-900 hover:bg-neutral-800 text-white transition-all disabled:opacity-40 cursor-pointer shrink-0"
+          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium bg-neutral-900 dark:bg-emerald-600 hover:bg-neutral-800 dark:hover:bg-emerald-500 text-white transition-all disabled:opacity-40 cursor-pointer shrink-0"
         >
           <Send className={`w-3.5 h-3.5 ${isSubmitting ? 'animate-pulse' : ''}`} />
           <span>{isSubmitting ? 'Sending...' : 'Submit'}</span>
