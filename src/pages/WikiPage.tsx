@@ -260,21 +260,6 @@ export const WikiPage: React.FC = () => {
                 ))}
               </div>
             )}
-
-            {/* Platform & Requirements badges */}
-            {mod.requirements && mod.requirements.length > 0 && (
-              <div className="mt-8 pt-6 border-t border-neutral-100 flex flex-wrap items-center gap-2">
-                <span className="text-xs text-neutral-500 font-medium mr-1">Compatibility:</span>
-                {mod.requirements.map((req, idx) => (
-                  <span
-                    key={idx}
-                    className="text-xs font-mono px-2.5 py-1 rounded-md bg-neutral-100 text-neutral-700 border border-neutral-200"
-                  >
-                    {req}
-                  </span>
-                ))}
-              </div>
-            )}
           </section>
 
           {/* Section 2: Features */}
