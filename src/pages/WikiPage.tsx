@@ -215,7 +215,7 @@ export const WikiPage: React.FC = () => {
         {/* Center Main Documentation Content */}
         <main className="flex-1 min-w-0 py-8 sm:py-12 lg:px-12">
           {/* Section 1: Overview */}
-          <section id="overview" className="scroll-mt-24 pb-12 border-b border-neutral-200/80">
+          <section id="overview" className="scroll-mt-24 pb-12">
             <div className="flex flex-wrap items-center gap-2 mb-4">
               {mod.loader && (
                 <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
@@ -264,7 +264,7 @@ export const WikiPage: React.FC = () => {
 
           {/* Section 2: Features */}
           {mod.features && mod.features.length > 0 && (
-            <section id="features" className="scroll-mt-24 py-12 border-b border-neutral-200/80">
+            <section id="features" className="scroll-mt-24 py-12">
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 mb-3">
                 What are the features?
               </h2>
@@ -288,7 +288,7 @@ export const WikiPage: React.FC = () => {
 
           {/* Section 3: Configuration & Controls */}
           {(mod.configGuide || mod.config) && (
-            <section id="configuration" className="scroll-mt-24 py-12 border-b border-neutral-200/80">
+            <section id="configuration" className="scroll-mt-24 py-12">
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 mb-3">
                 Configuration & Controls
               </h2>
@@ -327,7 +327,7 @@ export const WikiPage: React.FC = () => {
 
           {/* Section 4: FAQ */}
           {mod.faq && mod.faq.length > 0 && (
-            <section id="faq" className="scroll-mt-24 py-12 border-b border-neutral-200/80">
+            <section id="faq" className="scroll-mt-24 py-12">
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 mb-6">
                 Frequently Asked Questions
               </h2>
@@ -371,7 +371,7 @@ export const WikiPage: React.FC = () => {
           <h4 className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 mb-4">
             On this page
           </h4>
-          <ul className="space-y-2 border-l border-neutral-200 pl-3">
+          <ul className="space-y-2">
             {allNavItems.map((item) => {
               const isActive = activeSection === item.id;
               return (
