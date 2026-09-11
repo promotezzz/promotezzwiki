@@ -156,15 +156,10 @@ export const WikiPage: React.FC = () => {
               <span>Browse all wikis</span>
             </Link>
 
-            <div className="flex items-center gap-2 mt-2">
+            <div className="mt-2">
               <h2 className="text-xl font-bold tracking-tight text-neutral-900">
                 {mod.title}
               </h2>
-              {mod.version && (
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-neutral-100 text-neutral-800 border border-neutral-200">
-                  {mod.version}
-                </span>
-              )}
             </div>
           </div>
 
