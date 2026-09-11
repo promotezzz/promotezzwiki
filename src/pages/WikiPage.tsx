@@ -110,7 +110,7 @@ export const WikiPage: React.FC = () => {
   }
 
   return (
-    <div className="relative min-h-screen bg-white text-neutral-900 flex flex-col selection:bg-purple-100 selection:text-purple-900">
+    <div className="relative min-h-screen bg-white text-neutral-900 flex flex-col selection:bg-emerald-100 selection:text-emerald-900">
       {/* Mobile Sticky Header with Menu Toggle */}
       <header className="lg:hidden sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-neutral-200 px-4 py-3 flex items-center justify-between">
         <button
@@ -152,7 +152,7 @@ export const WikiPage: React.FC = () => {
               to="/browse"
               className="inline-flex items-center gap-2 text-xs font-medium text-neutral-500 hover:text-neutral-900 transition-colors group mb-4"
             >
-              <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-0.5 text-neutral-400 group-hover:text-purple-600" />
+              <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-x-0.5 text-neutral-400 group-hover:text-emerald-600" />
               <span>Browse all wikis</span>
             </Link>
 
@@ -161,7 +161,7 @@ export const WikiPage: React.FC = () => {
                 {mod.title}
               </h2>
               {mod.version && (
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200">
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-neutral-100 text-neutral-800 border border-neutral-200">
                   {mod.version}
                 </span>
               )}
@@ -187,12 +187,12 @@ export const WikiPage: React.FC = () => {
                             w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all text-left cursor-pointer
                             ${
                               isActive
-                                ? 'bg-purple-50 text-purple-700 font-semibold border border-purple-200/80 shadow-xs'
+                                ? 'bg-emerald-50 text-emerald-800 font-semibold border border-emerald-200 shadow-xs'
                                 : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100/70'
                             }
                           `}
                         >
-                          <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-purple-600' : 'text-neutral-400'}`} />
+                          <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-emerald-600' : 'text-neutral-400'}`} />
                           <span className="truncate">{item.label}</span>
                         </button>
                       </li>
@@ -218,7 +218,7 @@ export const WikiPage: React.FC = () => {
           <section id="overview" className="scroll-mt-24 pb-12 border-b border-neutral-200/80">
             <div className="flex flex-wrap items-center gap-2 mb-4">
               {mod.loader && (
-                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 border border-purple-200">
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
                   {mod.loader}
                 </span>
               )}
@@ -290,7 +290,7 @@ export const WikiPage: React.FC = () => {
               <ul className="space-y-4 text-neutral-600 text-base leading-relaxed">
                 {mod.features.map((feature, idx) => (
                   <li key={idx} className="flex items-start gap-3">
-                    <span className="text-purple-600 font-bold text-lg leading-none mt-1">•</span>
+                    <span className="text-emerald-600 font-bold text-lg leading-none mt-1">•</span>
                     <div>
                       <strong className="text-neutral-900 font-semibold">{feature.title}</strong>
                       <span className="text-neutral-600"> — {feature.description}</span>
@@ -313,7 +313,7 @@ export const WikiPage: React.FC = () => {
 
               <ul className="space-y-4 text-neutral-600 text-base leading-relaxed">
                 <li className="flex items-start gap-3">
-                  <span className="text-purple-600 font-bold text-lg leading-none mt-1">•</span>
+                  <span className="text-emerald-600 font-bold text-lg leading-none mt-1">•</span>
                   <div>
                     <strong className="text-neutral-900 font-semibold">In-Game Settings (Mod Menu)</strong>
                     <span className="text-neutral-600"> — {mod.configGuide?.modMenuDescription || 'Access and configure all settings directly in-game through the Mod Menu graphical screen.'}</span>
@@ -325,7 +325,7 @@ export const WikiPage: React.FC = () => {
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-purple-600 font-bold text-lg leading-none mt-1">•</span>
+                  <span className="text-emerald-600 font-bold text-lg leading-none mt-1">•</span>
                   <div>
                     <strong className="text-neutral-900 font-semibold">Quick-Toggle Keybind</strong>
                     <span className="text-neutral-600"> — {mod.configGuide?.quickToggleDescription || 'Quickly toggle RightClickPots on or off on the fly by configuring your toggle key.'}</span>
@@ -397,7 +397,7 @@ export const WikiPage: React.FC = () => {
                       text-xs transition-colors text-left block w-full truncate py-1 cursor-pointer
                       ${
                         isActive
-                          ? 'text-purple-600 font-semibold'
+                          ? 'text-emerald-700 font-semibold'
                           : 'text-neutral-500 hover:text-neutral-900'
                       }
                     `}

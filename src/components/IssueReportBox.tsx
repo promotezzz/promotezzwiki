@@ -89,8 +89,8 @@ export const IssueReportBox: React.FC<IssueReportBoxProps> = ({ modTitle, modSlu
     <div className="pt-2">
       <div className="rounded-2xl border border-neutral-200 bg-neutral-50/50 p-5 sm:p-7 shadow-xs">
         <div className="mb-4">
-          <div className="inline-flex items-center gap-1.5 text-xs font-medium text-purple-600 mb-1">
-            <AlertCircle className="w-3.5 h-3.5 text-purple-600" />
+          <div className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-700 mb-1">
+            <AlertCircle className="w-3.5 h-3.5 text-emerald-600" />
             <span>Issue Tracker</span>
           </div>
           <h3 className="text-xl font-semibold text-neutral-900 tracking-tight">
@@ -132,7 +132,7 @@ export const IssueReportBox: React.FC<IssueReportBoxProps> = ({ modTitle, modSlu
                   placeholder="e.g. Potions fail to trigger when holding shield"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-neutral-200 rounded-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-purple-600 focus:border-purple-600 transition-colors"
+                  className="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-neutral-200 rounded-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-emerald-600 focus:border-emerald-600 transition-colors"
                 />
               </div>
 
@@ -145,7 +145,7 @@ export const IssueReportBox: React.FC<IssueReportBoxProps> = ({ modTitle, modSlu
                   placeholder="e.g. 1.21.1 Fabric"
                   value={version}
                   onChange={(e) => setVersion(e.target.value)}
-                  className="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-neutral-200 rounded-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-purple-600 focus:border-purple-600 transition-colors"
+                  className="w-full px-3 py-2 text-xs sm:text-sm bg-white border border-neutral-200 rounded-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-emerald-600 focus:border-emerald-600 transition-colors"
                 />
               </div>
             </div>

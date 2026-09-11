@@ -9,7 +9,7 @@ interface NotFoundPageProps {
 
 export const NotFoundPage: React.FC<NotFoundPageProps> = () => {
   return (
-    <div className="relative min-h-screen bg-white text-neutral-900 flex flex-col items-center justify-center px-4 selection:bg-purple-100 selection:text-purple-900">
+    <div className="relative min-h-screen bg-white text-neutral-900 flex flex-col items-center justify-center px-4 selection:bg-emerald-100 selection:text-emerald-900">
       <div className="relative z-10 max-w-md mx-auto text-center flex flex-col items-center">
         {/* 404 Header */}
         <div className="relative mb-2">
