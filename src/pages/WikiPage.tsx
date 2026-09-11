@@ -354,7 +354,7 @@ export const WikiPage: React.FC = () => {
                 Report an Issue
               </h2>
               <p className="text-base text-neutral-600 mb-4 leading-relaxed">
-                Found a bug or issue? Submit a quick report below:
+                Found a bug or issue? Submit a report below (make sure to add the version too):
               </p>
 
               <IssueReportBox

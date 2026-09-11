@@ -69,7 +69,7 @@ export const IssueReportBox: React.FC<IssueReportBoxProps> = ({ modTitle, modSlu
         <input
           type="text"
           required
-          placeholder="Describe what happened or what's broken..."
+          placeholder="Describe the issue (make sure to add the version too)..."
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           className="flex-1 px-4 py-2.5 text-sm bg-neutral-50 border border-neutral-200 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-emerald-600 focus:border-emerald-600 transition-colors"
